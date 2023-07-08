@@ -1,4 +1,6 @@
-console.log (getArrayParams(-99, 99, 10))
+console.log (differenceMaxMinWorker(1, 2, 3, 4, 5, 6, 7, 8, 9))
+
+
 function getArrayParams(...arr) {
   let min = Infinity;
   let max = -Infinity;
@@ -20,18 +22,54 @@ function getArrayParams(...arr) {
 }
 
 function summElementsWorker(...arr) {
-
+  if (arr.length ===0) {
+    return 0;
+  }
+    return arr.reduce((sum, num) => sum + num, 0);
 }
 
 function differenceMaxMinWorker(...arr) {
+  if (arr.length ===0) {
+    return 0;
+  }
+  return Math.max(...arr) - Math.min(...arr);
 
 }
 
 function differenceEvenOddWorker(...arr) {
+  if (arr.length ===0) {
+    return 0;
+  }
+  let sumEvenElement = 0; //четные
+  let sumOddElement = 0; //нечетные
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    if (element%2 === 0) {
+      sumEvenElement += element;
+    } else {
+      sumOddElement += element;
+    }
+  }
+  return sumEvenElement - sumOddElement;
 
 }
 
 function averageEvenElementsWorker(...arr) {
+  if (arr.length ===0) {
+    return 0;
+  }
+  let sumEvenElement =0; //сумма чётных элементов
+  let countEvenElement = 0; //количество чётных элементов
+
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    if (element%2 === 0) {
+      sumEvenElement += element;
+      countEvenElement += 1;
+    } 
+  }
+  return sumEvenElement/countEvenElement;
 
 }
 
