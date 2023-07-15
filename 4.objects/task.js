@@ -27,14 +27,6 @@ Student.prototype.getAverage = function () {
     return average;
 }
 
-// Пример использования:
-let student1 = new Student("Василиса", "женский", 19);
-student1.setSubject("Algebra");
-console.log(student1.getAverage()); // 0
-student1.addMarks(4, 5, 4, 5);
-console.log(student1.getAverage()); // 4.5
-console.log(student1);
-
 Student.prototype.exclude = function (reason) {
     delete this.marks,
     delete this.subject,
