@@ -38,26 +38,62 @@ class Book extends PrintEditionItem {
     constructor(author, name, releaseDate, pagesCount, state) {
         super(name, releaseDate, pagesCount, state, "book");
         this.author = author;
-    } 
+    }
 }
 
 class NovelBook extends Book {
     constructor(author, name, releaseDate, pagesCount, state) {
-        super(name, releaseDate, pagesCount, state, "novel");
-        this.author = author;
-    } 
+        super(author, name, releaseDate, pagesCount, state);
+        this.type = "novel";
+    }
 }
 
 class FantasticBook extends Book {
     constructor(author, name, releaseDate, pagesCount, state) {
-        super(name, releaseDate, pagesCount, state, "fantastic");
-        this.author = author;
-    } 
+        super(author, name, releaseDate, pagesCount, state);
+        this.type = "fantastic";
+    }
 }
 
 class DetectiveBook extends Book {
     constructor(author, name, releaseDate, pagesCount, state) {
-        super(name, releaseDate, pagesCount, state, "detective");
-        this.author = author;
-    } 
+        super(author, name, releaseDate, pagesCount, state);
+        this.type = "detective";
+    }
+}
+
+class Library {
+    constructor(name) {
+        this.name = name;
+        this.books = [];
+    }
+
+    addBook(book) {
+        if (book.state >= 30) {
+            this.books.push(book);
+        }
+    }
+
+    findBookBy(type, value) {
+        for (let i = 0; i < this.books.length; i++) {
+            const book = this.books[i];
+            if (book[type] === value) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    giveBookByName(bookName) {
+        const foundBook = this.findBookBy("name", bookName);
+
+        if (foundBook === null) {
+            return null;
+        }
+        else {
+            this.books.pop(foundBook);
+            return foundBook;
+        }
+    }
+
 }
