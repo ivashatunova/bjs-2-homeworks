@@ -20,9 +20,24 @@ class AlarmClock {
 
     }
 
+    removeClock(time) {
+        this.alarmCollection = this.alarmCollection.filter(alarm => alarm.time !== this.time)
+
+    }
+
+    getCurrentFormattedTime() {
+        const date = new Date();
+        const hours = date.getHours().toString();
+        const minutes = date.getMinutes().toString();
+
+        return `${hours}:${minutes}`;
+
+    }
+
 }
 
-// clock = new AlarmClock();
-// const callback = f => f;
-// clock.addClock("16:45", callback);
+clock = new AlarmClock();
+const callback = f => f;
+clock.addClock("16:45", callback);
+console.log (clock.getCurrentFormattedTime());
 
