@@ -5,7 +5,7 @@ class AlarmClock {
     }
 
     addClock(time, callback) {
-        if (this.time === null || this.callback === null) {
+        if (!time || !callback) {
             throw new Error("Отсутствуют обязательные аргументы");
         }
 
@@ -17,21 +17,17 @@ class AlarmClock {
         })
 
         this.alarmCollection.push({ callback: callback, time: time, canCall: true });
-
     }
 
     removeClock(time) {
         this.alarmCollection = this.alarmCollection.filter(alarm => alarm.time !== time)
-
     }
 
     getCurrentFormattedTime() {
         const date = new Date();
         const hours = date.getHours().toString();
         const minutes = date.getMinutes().toString();
-
         return `${hours}:${minutes}`;
-
     }
 
     start() {
@@ -44,7 +40,7 @@ class AlarmClock {
                     alarm.canCall = false;
                     alarm.callback();
                 }
-            });  
+            });
         }, 1000);
     }
 
@@ -54,7 +50,7 @@ class AlarmClock {
     }
 
     resetAllCalls() {
-        this.alarmCollection.forEach(alarm => alarm.canCall = false);  
+        this.alarmCollection.forEach(alarm => alarm.canCall = true);
 
     }
 
@@ -65,13 +61,4 @@ class AlarmClock {
 
 }
 
-clock = new AlarmClock();
-console.log(clock.getCurrentFormattedTime());
-
-    clock.addClock("16:45", f => f);
-    clock.addClock("16:45", f => f);
-    clock.addClock("16:46", f => f);
-    clock.removeClock("16:45");
-    console.log(clock.alarmCollection.length);
-    console.log(clock.alarmCollection);
 
